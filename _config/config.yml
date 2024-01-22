@@ -1,0 +1,8 @@
+---
+Name: idlelock
+---
+
+# Add a field to Group to configure the lockout time
+SilverStripe\Security\Group:
+  extensions:
+    - DNADesign\IdleLock\Extensions\GroupLockoutThresholdExtension
