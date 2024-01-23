@@ -1,9 +1,9 @@
 # IdleLock
-Idle accounts are the security vulnerability's gateway
+They say that idle hands are the devils playthings, and likeso, idle accounts are the security vulnerability's gateway.
 
 ## Introduction
 
-Safeguard your SilverStripe platform with this module that automatically locks idle accounts, fortifying your security by closing the gateway to potential vulnerabilities. The default idle period can be configured, and/or specified per security group.
+Safeguard your SilverStripe site with this module that automatically locks idle accounts, fortifying your security by closing the gateway to potential vulnerabilities. The default idle period can be configured, and may be specified per security group.
 
 ## Requirements
 
@@ -36,6 +36,19 @@ crons:
     vhost: 'mysite'
   queuedjobs_task:
     time: '0 2 * * *'
-    sake_once: 'dev/tasks/AutoLockMembersTask'
+    sake_once: 'dev/tasks/LockMembersTask'
     vhost: 'mysite'
 ```
+
+To update the global default lockout threshold, set the config:
+
+```
+SilverStripe\Security\Member:
+  lockout_threshold: 30
+```
+
+To set the Security Group specific lockout threshold, update the value for that group in the security admin.
+
+**NB1:** If the user is a member of multiple groups, the lowest threshold will apply.
+
+**NB2:** The group threshold cannot be used to increase the threshold beyond the global default.

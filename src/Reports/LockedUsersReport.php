@@ -13,7 +13,7 @@ use SilverStripe\Security\Member;
 /**
  * List users and their locked status
  */
-class UserReport extends Report
+class LockedUserReport extends Report
 {
     protected $title = 'Locked users Report';
 

@@ -6,3 +6,7 @@ Name: idlelock
 SilverStripe\Security\Group:
   extensions:
     - DNADesign\IdleLock\Extensions\GroupLockoutThresholdExtension
+SilverStripe\Security\Member:
+  lockout_threshold: 30 # Default lockout period
+  extensions:
+    - DNADesign\IdleLock\Extensions\MemberLockoutExtension
