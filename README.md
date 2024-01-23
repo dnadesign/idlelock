@@ -1,9 +1,13 @@
 # IdleLock
-They say that idle hands are the devils playthings, and likeso, idle accounts are the security vulnerability's gateway.
+They say that idle hands are the devils playthings, and like so, idle accounts are the security vulnerability's gateway.
 
 ## Introduction
 
-Safeguard your SilverStripe site with this module that automatically locks idle accounts, fortifying your security by closing the gateway to potential vulnerabilities. The default idle period can be configured, and may be specified per security group.
+Safeguard your SilverStripe site with this module that automatically locks idle accounts, fortifying your security by closing the gateway to potential vulnerabilities. 
+
+The default idle period can be configured, and may be specified per security group.
+
+A Locked User report is included.
 
 ## Requirements
 

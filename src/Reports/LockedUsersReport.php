@@ -54,8 +54,8 @@ class LockedUserReport extends Report
             'Surname' => 'Last Name',
             'Email' => 'Email',
             'Locked' => 'Locked',
-            'GroupsList' => 'Groups',
-            'LastVisited' => 'Last Logged In',
+            'getGroupNames' => 'Groups',
+            'getLastAccessed' => 'Last Logged In',
         ];
     }
 
