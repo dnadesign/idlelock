@@ -2,11 +2,12 @@
 Name: idlelock
 ---
 
-# Add a field to Group to configure the lockout time
+# Add a field to Group to configure the lockout threshold
 SilverStripe\Security\Group:
   extensions:
     - DNADesign\IdleLock\Extensions\GroupLockoutThresholdExtension
+
 SilverStripe\Security\Member:
-  lockout_threshold: 30 # Default lockout period
+  lockout_threshold_days: 30 # Default lockout threshold
   extensions:
     - DNADesign\IdleLock\Extensions\MemberLockoutExtension

@@ -11,48 +11,31 @@ A Locked User report is included.
 
 ## Requirements
 
-* SilverStripe 4.13 / 5.1
-* queuedjobs 4.12 / 5.0
+* SilverStripe ^4.13 || ^5.1
 
 ## Installation
 
-Add the repository to composer.json
-```
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/dnadesign/silverstripe-idlelock.git"
-        }
-    ],
-```
-Then, install the module:
 `composer require dnadesign/silverstripe-idlelock`
 
 ## Configuration
 
-To automatically lock idle accounts, set up a cron to run the task at your desired frequency.
-e.g. on Silverstripe Platform, add a cron to **.platform.yml**, ensuring the `queuedjobs_task` is also present:
-```
-crons:
-  queuedjobs_task:
-    time: '* * * * *'
-    sake_once: 'dev/tasks/ProcessJobQueueTask'
-    vhost: 'mysite'
-  queuedjobs_task:
-    time: '0 2 * * *'
-    sake_once: 'dev/tasks/LockMembersTask'
-    vhost: 'mysite'
-```
+To automatically lock idle accounts, set up a cron to run the LockMembersTask task at your desired frequency, e.g. daily
 
-To update the global default lockout threshold, set the config:
+To update the global default lockout threshold, set the config in your project:
 
 ```
 SilverStripe\Security\Member:
-  lockout_threshold: 30
+  lockout_threshold_days: 30
 ```
 
-To set the Security Group specific lockout threshold, update the value for that group in the security admin.
+## Usage
 
-**NB1:** If the user is a member of multiple groups, the lowest threshold will apply.
+Once the cron is set, the users will automatically lock if they don't lock in for a period longer than the lockout threshold.
 
-**NB2:** The group threshold cannot be used to increase the threshold beyond the global default.
+Locked users will see a different message on the login screen indicating why they can't log in.
+
+To unlock the user, an admin must view the Member record in the CMS and uncheck the 'Locked' checkbox.
+
+To set a custom lockout threshold for members of a group, update the LockoutThresholdDays field for that Group in the security admin. 
+If the user is a member of multiple groups, the lowest threshold will apply.
+The group threshold cannot be used to increase the threshold beyond the global default.
