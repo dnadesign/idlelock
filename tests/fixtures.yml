@@ -1,0 +1,24 @@
+SilverStripe\Security\Group:
+  lowThreshold:
+    Title: Low threshold
+    LockoutThresholdDays: 10
+
+SilverStripe\Security\Member:
+  user1:
+    FirstName: unlocked
+    Email: unlocked@dna.co.nz
+    LastEdited: '2024-02-01 10:00:00'
+  user2:
+    FirstName: locked
+    Email: locked@dna.co.nz
+    LastEdited: '2024-02-01 10:00:00'
+  user3:
+    FirstName: groupLocked
+    Email: grouplocked@dna.co.nz
+    LastEdited: '2024-02-01 10:00:00'
+    Groups: =>SilverStripe\Security\Group.lowThreshold
+
+SilverStripe\SessionManager\Models\LoginSession:
+  user2session:
+    LastAccessed: '2023-02-01 10:00:00'
+    Member: =>SilverStripe\Security\Member.user2
