@@ -1,5 +1,5 @@
 # IdleLock
-They say that idle hands are the devils playthings, and like so, idle accounts are the security vulnerability's gateway.
+They say that idle hands are the devils playthings, so idle accounts are the security vulnerability's gateway.
 
 ## Introduction
 

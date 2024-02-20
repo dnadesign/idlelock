@@ -2,10 +2,12 @@
 
 namespace DNADesign\IdleLock\Reports;
 
+use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldExportButton;
 use SilverStripe\Forms\GridField\GridFieldPageCount;
 use SilverStripe\Forms\GridField\GridFieldPaginator;
 use SilverStripe\Forms\GridField\GridFieldPrintButton;
+use SilverStripe\ORM\FieldType\DBDate;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Reports\Report;
 use SilverStripe\Security\Member;
@@ -55,7 +57,17 @@ class LockedUserReport extends Report
             'Email' => 'Email',
             'Locked' => 'Locked',
             'getGroupNames' => 'Groups',
-            'getLastAccessed' => 'Last Logged In',
+            'Date' => [
+                'title' => 'Last logged in',
+                'formatting' => function ($value, $item) {
+                    $customDate = $item->getLastLogin();
+                    $item->shouldBeLockedOut();
+                    if ($customDate instanceof DBDate || $customDate instanceof DBDatetime) {
+                        return $customDate->format('dd/MM/y');
+                    }
+                    return $customDate ?: 'Never';
+                }
+            ],
         ];
     }
 
@@ -87,17 +99,5 @@ class LockedUserReport extends Report
     protected function formatGroupsList($record)
     {
         return implode(', ', $record->Groups()->column('Title'));
-    }
-
-    /**
-     * Format the last visited date and time for a user.
-     *
-     * @param  DataObject $record
-     * @return string
-     */
-    protected function formatLastVisited($record)
-    {
-        $lastVisited = $record->LastVisited ?: 'N/A';
-        return DBDatetime::create()->setValue($lastVisited)->Nice();
     }
 }
