@@ -70,8 +70,10 @@ class MemberLockoutExtension extends DataExtension
 
     /**
      * Return the date the user has last accessed the CMS
+     *
+     * @return DBDatetime|null
      */
-    public function getLastAccessed()
+    public function getLastAccessed(): ?DBDateTime
     {
         if ($lastTime = $this->owner->getLastLogin()) {
             return $lastTime;
@@ -83,9 +85,9 @@ class MemberLockoutExtension extends DataExtension
     /**
      * Get the last login attempt
      *
-     * @return void
+     * @return DBDatetime|null
      */
-    public function getLastLogin()
+    public function getLastLogin(): ?DBDateTime
     {
         $lastTime = LoginAttempt::get()
             ->filter(

@@ -61,7 +61,6 @@ class LockedUserReport extends Report
                 'title' => 'Last logged in',
                 'formatting' => function ($value, $item) {
                     $customDate = $item->getLastLogin();
-                    $item->shouldBeLockedOut();
                     if ($customDate instanceof DBDate || $customDate instanceof DBDatetime) {
                         return $customDate->format('dd/MM/y');
                     }
