@@ -22,7 +22,7 @@ class SiteConfigLockoutExtension extends DataExtension
         $fields->addFieldToTab('Root.Access',
             TextField::create('LockoutMessage')
                 ->setDescription(sprintf(
-                    'Override the login screen message displayed to locked users.<br><strong>Default :</strong> %s',
+                    'Override the login screen message displayed to locked users.<br><strong>Default:</strong> %s',
                     Config::inst()->get(Member::class, 'lockout_message')
             ))
         );

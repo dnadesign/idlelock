@@ -16,7 +16,7 @@ class MemberLockoutExtension extends DataExtension
 {
     private static $db = [
         'Locked' => 'Boolean',
-        'LockoutExempt' => 'Boolean'
+        'LockoutExempt' => 'Boolean',
     ];
 
     public function updateCMSFields(FieldList $fields)
