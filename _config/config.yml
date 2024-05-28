@@ -2,12 +2,16 @@
 Name: idlelock
 ---
 
-# Add a field to Group to configure the lockout threshold
-SilverStripe\Security\Group:
-  extensions:
-    - DNADesign\IdleLock\Extensions\GroupLockoutThresholdExtension
-
 SilverStripe\Security\Member:
-  lockout_threshold_days: 30 # Default lockout threshold
+  lockout_threshold_days: 30
+  lockout_message: 'This account has been locked. Please contact an administrator.'
   extensions:
     - DNADesign\IdleLock\Extensions\MemberLockoutExtension
+
+SilverStripe\Security\Group:
+  extensions:
+    - DNADesign\IdleLock\Extensions\GroupLockoutExtension
+
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - DNADesign\IdleLock\Extensions\SiteConfigLockoutExtension
